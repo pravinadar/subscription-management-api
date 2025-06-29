@@ -1,6 +1,6 @@
-import { Router } from "express";
+import express from "express";
 
-const authRouter = Router();    
+const authRouter = express.Router();    
 
 authRouter.get('/sign-up',(req,res)=>{
     res.send({title: 'sign-up'});

@@ -1,6 +1,6 @@
-import { Router } from "express";
+import express from "express";
 
-const userRouter = Router();
+const userRouter = express.Router();
 
 userRouter.get('/profile', (req, res) => {
     res.send({title: 'user-profile'});
