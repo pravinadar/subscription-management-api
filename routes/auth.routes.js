@@ -1,7 +1,9 @@
 import express from "express";
 
-const authRouter = express.Router();    
+const router = express.Router();    
 
-authRouter.get('/sign-up',(req,res)=>{
+router.get('/sign-up',(req,res)=>{
     res.send({title: 'sign-up'});
 })
+
+export default router;

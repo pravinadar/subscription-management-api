@@ -1,7 +1,9 @@
 import express from "express";
 
-const userRouter = express.Router();
+const router = express.Router();
 
-userRouter.get('/profile', (req, res) => {
+router.get('/profile', (req, res) => {
     res.send({title: 'user-profile'});
 });
+
+export default router;
