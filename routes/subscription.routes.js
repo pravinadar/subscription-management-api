@@ -1,6 +1,6 @@
 import express from 'express';
 
-router = express.Router();
+const router = express.Router();
 
 router.get('/subscriptions', (req, res) => {
     res.send({title: 'user-subscriptions'});
