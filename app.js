@@ -10,6 +10,9 @@ const app = express();
 
 const PORT = process.env.PORT;
 
+// Middleware to parse JSON
+app.use(express.json());
+
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/subscriptions', subscriptionRouter);
 app.use('/api/v1/users', userRouter);
