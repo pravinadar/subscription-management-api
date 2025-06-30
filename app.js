@@ -4,6 +4,7 @@ import 'dotenv/config';
 import authRouter from './routes/auth.routes.js'
 import subscriptionRouter from './routes/subscription.routes.js'
 import userRouter from './routes/user.routes.js'
+import connectDB from './config/connectDB.js';
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.get('/', (req, res) => {
     res.send('Subscription Tracker API is running!');
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, async () => {
     console.log(`API is running on http://localhost:${PORT}`);
+
+    await connectDB();
 });
