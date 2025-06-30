@@ -6,6 +6,7 @@ import subscriptionRouter from './routes/subscription.routes.js'
 import userRouter from './routes/user.routes.js'
 import connectDB from './config/connectDB.js';
 import cookieParser from 'cookie-parser';
+import { arcjetMiddleware } from './middlewares/arcjet.middleware.js';
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // Middleware to parse cookies
 app.use(cookieParser())
-
+// Global security middleware (Arcjet)
+app.use(arcjetMiddleware)
 
 
 app.use('/api/v1/auth', authRouter);

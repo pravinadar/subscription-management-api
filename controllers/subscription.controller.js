@@ -68,7 +68,7 @@ export const addSubscription = async (req, res) => {
         });
 
         const savedSubscription = await subscription.save();
-        
+
         res.status(201).json(savedSubscription);
     } catch (error) {
         console.error('Error adding subscription:', error.message);
@@ -80,19 +80,25 @@ export const addSubscription = async (req, res) => {
 export const updateSubscription = async (req, res) => {
     const { id } = req.params;
     const { name, price, frequency, renewalDate } = req.body;
+
     try {
         const subscription = await Subscription.findById(id);
+
         if (!subscription) {
             return res.status(404).json({ message: 'Subscription not found' });
         }
+
         if (subscription.user.toString() !== req.user.id) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
+
         subscription.name = name || subscription.name;
         subscription.price = price || subscription.price;
         subscription.frequency = frequency || subscription.frequency;
         subscription.renewalDate = renewalDate || subscription.renewalDate;
+
         const updatedSubscription = await subscription.save();
+
         res.status(200).json(updatedSubscription);
     } catch (error) {
         console.error('Error updating subscription:', error.message);
