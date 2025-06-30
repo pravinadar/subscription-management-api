@@ -50,6 +50,12 @@ const subscriptionSchema = new mongoose.Schema({
         ref: "User",
         required: [true, "User is required"],
         index: true
+    },
+    userEmail:{
+        type: String,
+        required: [true, "User email is required"],
+        trim: true
+
     }
 },
 {

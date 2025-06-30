@@ -5,6 +5,7 @@ import authRouter from './routes/auth.routes.js'
 import subscriptionRouter from './routes/subscription.routes.js'
 import userRouter from './routes/user.routes.js'
 import connectDB from './config/connectDB.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -12,6 +13,12 @@ const PORT = process.env.PORT;
 
 // Middleware to parse JSON
 app.use(express.json());
+// Middleware to parse URL-encoded data
+app.use(express.urlencoded({ extended: false }));
+// Middleware to parse cookies
+app.use(cookieParser())
+
+
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/subscriptions', subscriptionRouter);
