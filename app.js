@@ -1,7 +1,6 @@
 import express from 'express';
 import 'dotenv/config';
 
-import authRouter from './routes/auth.routes.js'
 import subscriptionRouter from './routes/subscription.routes.js'
 import userRouter from './routes/user.routes.js'
 import connectDB from './config/connectDB.js';
@@ -21,8 +20,6 @@ app.use(cookieParser())
 // Global security middleware (Arcjet)
 app.use(arcjetMiddleware)
 
-
-app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/subscriptions', subscriptionRouter);
 app.use('/api/v1/users', userRouter);
 

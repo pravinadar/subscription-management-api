@@ -17,7 +17,6 @@ export const findSubscriptionById = async (id) => {
     return subscription;
 };
 
-
 // GET subscription by ID (with auth check)
 export const getSubscriptionById = async (req, res) => {
     try {
@@ -51,9 +50,9 @@ export const getSubscriptions = async (req, res) => {
 
 // POST create a new subscription
 export const addSubscription = async (req, res) => {
-    const { name, price, frequency, renewalDate } = req.body;
+    const { name, price, frequency } = req.body;
 
-    if (!name || !price || !frequency || !renewalDate) {
+    if (!name || !price || !frequency) {
         return res.status(400).json({ message: 'Please fill all required fields' });
     }
 
@@ -62,9 +61,7 @@ export const addSubscription = async (req, res) => {
             name,
             price,
             frequency,
-            renewalDate,
-            user: req.user.id,
-            userEmail: req.user.email,
+            user: req.user.id
         });
 
         const savedSubscription = await subscription.save();
@@ -79,7 +76,7 @@ export const addSubscription = async (req, res) => {
 // PUT update an existing subscription
 export const updateSubscription = async (req, res) => {
     const { id } = req.params;
-    const { name, price, frequency, renewalDate } = req.body;
+    const { name, price, frequency } = req.body;
 
     try {
         const subscription = await Subscription.findById(id);
@@ -95,7 +92,6 @@ export const updateSubscription = async (req, res) => {
         subscription.name = name || subscription.name;
         subscription.price = price || subscription.price;
         subscription.frequency = frequency || subscription.frequency;
-        subscription.renewalDate = renewalDate || subscription.renewalDate;
 
         const updatedSubscription = await subscription.save();
 
@@ -108,16 +104,22 @@ export const updateSubscription = async (req, res) => {
 
 // DELETE a subscription
 export const deleteSubscription = async (req, res) => {
+
     const { id } = req.params;
+
     try {
         const subscription = await Subscription.findById(id);
+
         if (!subscription) {
             return res.status(404).json({ message: 'Subscription not found' });
         }
+
         if (subscription.user.toString() !== req.user.id) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
+
         await subscription.deleteOne();
+        
         res.status(200).json({ message: 'Subscription deleted' });
     } catch (error) {
         console.error('Error deleting subscription:', error.message);
