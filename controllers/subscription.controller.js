@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import Subscription from '../models/subscription.model.js';
 
-// Helper function to fetch a subscription without auth check.
-// Used by the workflow controller.
 export const findSubscriptionById = async (id) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         throw new Error(`Invalid subscription ID: ${id}`);
