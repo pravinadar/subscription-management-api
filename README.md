@@ -34,19 +34,19 @@ A robust RESTful API for managing user subscriptions built with Node.js, Express
 
 ### Authentication Routes
 ```
-POST /api/users/register    - Register a new user
-POST /api/users/login       - Login user
-GET  /api/users/get-profile - Get user profile (authenticated)
+POST /api/v1/users/register    - Register a new user
+POST /api/v1/users/login       - Login user
+GET  /api/v1/users/get-profile - Get user profile (authenticated)
 ```
 
 ### Subscription Routes
 All subscription routes require authentication.
 ```
-POST   /api/subscriptions/     - Create a new subscription
-GET    /api/subscriptions/     - Get all user's subscriptions
-GET    /api/subscriptions/:id  - Get subscription by ID
-PUT    /api/subscriptions/:id  - Update subscription
-DELETE /api/subscriptions/:id  - Delete subscription
+POST   /api/v1/subscriptions/             - Create a new subscription
+GET    /api/v1/subscriptions/             - Get all user's subscriptions
+GET    /api/v1/subscriptions/:id          - Get subscription by ID
+PUT    /api/v1/subscriptions/:id          - Update subscription
+DELETE /api/v1/subscriptions/:id          - Delete subscription
 ```
 
 ## Technology Stack
@@ -107,7 +107,7 @@ DELETE /api/subscriptions/:id  - Delete subscription
 
 ### Register a User
 ```bash
-POST /api/users/register
+POST /api/v1/users/register
 {
   "name": "John Doe",
   "email": "john@example.com",
@@ -117,7 +117,7 @@ POST /api/users/register
 
 ### Create a Subscription
 ```bash
-POST /api/subscriptions/
+POST /api/v1/subscriptions/
 Authorization: Bearer <jwt_token>
 {
   "name": "Netflix Premium",
@@ -128,7 +128,7 @@ Authorization: Bearer <jwt_token>
 
 ### Get User Subscriptions
 ```bash
-GET /api/subscriptions/
+GET /api/v1/subscriptions/
 Authorization: Bearer <jwt_token>
 ```
 
